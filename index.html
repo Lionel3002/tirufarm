@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiru Farm</title>
+
+    <!-- External Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<html lang="en">
+
+</html>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logozw.png" alt="Zimbabwe Pavilion Logo">
+                Tiru Farm
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#future">Our Future</a></li>
+                <li><a href="#experience">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop>
+            <source src="Our Zimbabwe - Dillan Prinsloo(720P_HD).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Tiru Farm</h1>
+            <p class="hero-subtitle">Your trusted source for fresh farm produce</p>
+            <a href="#future" class="cta-button">See More</a>
+        </div>
+    </section>
+
+    <!-- External Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-toggle i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        }
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(400, 400, 400, 0.9)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+
+    </style>
+    </head>
+
+
+</html>
+
+<!-- Our Future Section -->
+<section id="future" class="future-section">
+    <div class="container">
+        <h2 data-aos="fade-up">Our Future</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <h3>2025 Vision</h3>
+                <p>As a dedicated organization committed to the responsible care and ethical sale of
+                    domestic animals, we envision a future where every animal finds a loving home. We
+                    will prioritize the health and well-being of our animals, ensuring they receive the
+                    best care and socialization during their time with us.
+                    <br>
+                    <br>
+                    Our organization aims to lead the industry by promoting sustainable practices,
+                    educating potential pet owners about responsible ownership, and advocating for
+                    animal welfare. We will leverage technology to enhance our operations and improve
+                    customer experiences, making it easier for families to find their perfect companion.
+                    <br>
+                    <br>
+                    Together, we will build a community that values compassion, education, and the joy
+                    that comes from sharing our lives with domestic animals. Our commitment to these
+                    principles will not only strengthen our organization but also foster a culture of
+                    empathy and responsibility in pet ownership for generations to come.
+                </p>
+            </div>
+            <!-- More timeline items... -->
+        </div>
+    </div>
+    
+    
+    
+
+
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Full-Height Slideshow</title>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%; /* Ensure body and html take full height */
+            }
+            .h2{
+                font-size: 300px;
+            }
+            .custom-slideshow-container {
+                position: relative;
+                width: 100%; /* Set the width to 100% */
+                height: 100vh; /* Set the height to 100% of the viewport */
+                overflow: hidden;
+                text-align: center; /* Center text elements */
+            }
+            .custom-slides {
+                display: flex;
+                position: relative; /* Keep position relative for absolute children */
+                height: 100%; /* Ensure slides fill the container height */
+            }
+            .custom-slide {
+                min-width: 100%; /* Each slide takes full width */
+                position: absolute; /* Position for absolute stacking */
+                top: 0;
+                left: 0;
+                opacity: 0; /* Start hidden */
+                transition: opacity 1s ease; /* Fade transition */
+            }
+            .custom-slide.active {
+                opacity: 1; /* Show active slide */
+                transition: opacity 1s ease; /* Fade transition for active slide */
+            }
+            .custom-slide img {
+                width: 100%; /* Ensure images are responsive */
+                height: 100%; /* Set height to 100% of the container */
+                object-fit: cover; /* Maintain aspect ratio */
+            }
+            .overlay {
+                position: absolute; /* Absolute positioning for overlays */
+                top: 50%; /* Center the overlay vertically */
+                left: 50%;
+                transform: translate(-50%, 100%); /* Start below the image */
+                color: white; /* Text color */
+                text-align: center;
+                opacity: 0; /* Start hidden */
+                transition: opacity 0.5s ease; /* Transition for fade in */
+            }
+            .custom-slide.active .overlay {
+                transform: translate(-50%, -50%); /* Move to final position */
+                opacity: 1; /* Fade in */
+                animation: popUp 0.8s ease forwards; /* Apply slower pop-up animation */
+            }
+            @keyframes popUp {
+                from {
+                    transform: translate(-50%, 100%); /* Start from below */
+                }
+                to {
+                    transform: translate(-50%, -50%); /* End at center */
+                }
+            }
+            .products-title {
+                font-size: 86px; /* Increased font size */
+                margin: 0; /* Remove default margin */
+            }
+            .description {
+                font-size: 24px; /* Increased font size */
+                margin: 5px 0; /* Space between description and button */
+            }
+            .shop-now {
+                background: rgba(0, 123, 255, 0.8);
+                border: none;
+                padding: 12px 24px; /* Increased padding for the button */
+                cursor: pointer;
+                font-size: 18px; /* Increased font size */
+            }
+            .shop-now:hover {
+                background: rgba(0, 123, 255, 1);
+            }
+            .navigation {
+                position: absolute;
+                bottom: 20px; /* Position just above the bottom */
+                left: 50%;
+                transform: translateX(-50%); /* Center the navigation */
+                display: flex;
+                align-items: center; /* Align items vertically */
+            }
+            .custom-arrow {
+                background: rgba(0, 0, 0, 0.5);
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                color: white;
+                margin: 0 5px; /* Space between arrows and buttons */
+            }
+            .play-pause {
+                background: rgba(0, 0, 0, 0.7);
+                border: none;
+                padding: 10px;
+                color: white;
+                cursor: pointer;
+            }
+            .custom-arrow:hover, .play-pause:hover {
+                background: rgba(0, 0, 0, 0.9);
+            }
+            .dots {
+                display: flex;
+                justify-content: center; /* Center the dots */
+                margin-top: 10px; /* Space between dots and navigation */
+            }
+            .dot {
+                height: 12px;
+                width: 12px;
+                margin: 0 5px;
+                background-color: rgba(255, 255, 255, 0.5); /* Inactive dot color */
+                border-radius: 50%; /* Make dots circular */
+                display: inline-block;
+                cursor: pointer;
+            }
+            .active-dot {
+                background-color: white; /* Active dot color */
+            }
+        </style>
+    </head>
+    <body>
+    
+    <div class="custom-slideshow-container">
+        <div class="custom-slides">
+            <div class="custom-slide active">
+                <img src="pigs2.jpg" alt="Image 1">
+                <div class="overlay">
+                    <h2 class="products-title">Pigs</h2>
+                    <p class="description">Tiru Fresh Produce</p>
+                    <button class="shop-now">Shop Now</button>
+                </div>
+            </div>
+            <div class="custom-slide">
+                <img src="cattle1.jpg" alt="Image 2">
+                <div class="overlay">
+                    <h2 class="products-title">Cattle</h2>
+                    <p class="description">Tiru Fresh Produce</p>
+                    <button class="shop-now">Shop Now</button>
+                </div>
+            </div>
+            <div class="custom-slide">
+                <img src="chicken1.jpg" alt="Image 3">
+                <div class="overlay">
+                    <h2 class="products-title">Chicken </h2>
+                    <p class="description">Tiru Fresh Produce</p>
+                    <button class="shop-now">Shop Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="custom-arrow left-arrow" id="customPrevBtn">←</button>
+            <button class="play-pause" id="playPauseBtn">❚❚</button>
+            <button class="custom-arrow right-arrow" id="customNextBtn">→</button>
+        </div>
+        <div class="dots" id="dotsContainer"></div>
+    </div>
+    
+    <script>
+        let customCurrentIndex = 0;
+        let autoPlayInterval;
+        let isPlaying = true;
+        const totalSlides = document.querySelectorAll('.custom-slide').length;
+    
+        function showSlide(index) {
+            const slides = document.querySelector('.custom-slides');
+            const currentSlide = document.querySelectorAll('.custom-slide');
+            
+            currentSlide[customCurrentIndex].classList.remove('active'); // Remove active class from previous slide
+            customCurrentIndex = (index + totalSlides) % totalSlides; // Cycle through slides
+            currentSlide[customCurrentIndex].classList.add('active'); // Add active class to current slide
+            updateDots(); // Update dots on slide change
+        }
+    
+        function nextSlide() {
+            showSlide(customCurrentIndex + 1);
+        }
+    
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+        }
+    
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+    
+        document.getElementById('customNextBtn').addEventListener('click', function() {
+            nextSlide();
+        });
+    
+        document.getElementById('customPrevBtn').addEventListener('click', function() {
+            showSlide(customCurrentIndex - 1);
+        });
+    
+        document.getElementById('playPauseBtn').addEventListener('click', function() {
+            if (isPlaying) {
+                stopAutoPlay();
+                this.innerText = '▶'; // Change to play icon
+            } else {
+                startAutoPlay();
+                this.innerText = '❚❚'; // Change to pause icon
+            }
+            isPlaying = !isPlaying;
+        });
+    
+        function createDots() {
+            const dotsContainer = document.getElementById('dotsContainer');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dot.addEventListener('click', () => showSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            updateDots(); // Initialize active dot
+        }
+    
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active-dot');
+                if (index === customCurrentIndex) {
+                    dot.classList.add('active-dot');
+                }
+            });
+        }
+    
+        // Start autoplay and create dots when the page loads
+        createDots();
+        startAutoPlay();
+    </script>
+    
+    </body>
+    </html>
+
+
+    <section id="future" class="future-section">
+        <div class="container">
+            <h2 data-aos="fade-up"> Our Committment To Service</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <h3>Quick Delivery</h3>
+                    <p>We understand the importance of timely service. Our commitment to quick delivery ensures that you receive your orders swiftly and efficiently. Whether you're stocking up or need a last-minute purchase, we have you covered.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <h3>Open 24/7</h3>
+                    <p>Your convenience is our priority. That's why we operate 24/7, allowing you to shop for our products whenever it suits you. No matter the time of day, we are here to meet your needs.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <h3>Always in Stock</h3>
+                    <p>We pride ourselves on maintaining a well-stocked inventory. Our commitment to always having products available means you can rely on us to provide what you need, when you need it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    </body>
+    </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image Grid</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
+            .image-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+                max-width: 1200px; /* Smaller section size */
+                margin: auto; /* Center the grid */
+            }
+            .image-grid a {
+                position: relative;
+                display: block;
+                overflow: hidden;
+                border: 2px solid transparent;
+                transition: transform 0.3s, border-color 0.3s;
+            }
+            .image-grid img {
+                width: 100%;
+                height: auto;
+                display: block;
+
+            }
+            .link-text {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.7); /* Background for text */
+                color: white; /* Text color */
+                text-align: center; /* Center the text */
+                padding: 10px; /* Padding for text */
+                transition: opacity 0.3s;
+                opacity: 1; /* Always visible */
+            }
+            .image-grid a:hover {
+                transform: scale(1.05);
+                border-color: #19d716;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="image-grid">
+            <a href="virtualtour.html"><img src="cattle1.jpg" alt="Image 1"><div class="link-text">Cattle</div></a>
+            <a href="chickens.html"><img src="chicken1.jpg" alt="Image 2"><div class="link-text"> Chicken</div></a>
+            <a href="goats.html"><img src="goats1.jpg" alt="Image 3"><div class="link-text">Goats</div></a>
+            <a href="eggs.html"><img src="ff.jpg" alt="Image 4"><div class="link-text">Eggs</div></a>
+            <a href="pigs.html"><img src="pigs2.jpg" alt="Image 5"><div class="link-text">Pigs</div></a>
+            <a href="freshveg.html"><img src="fresh veg.jpg." alt="Image 6"><div class="link-text">Fresh Vegetable</div></a>
+            <a href="milk.html"><img src="milk.jpg" alt="Image 7"><div class="link-text">Milk</div></a>
+            <a href="virtualtour.html"><img src="cattle1.jpg" alt="Image 8"><div class="link-text">Cattle</div></a>
+        </section>
+    </body>
+    </html>
+
+
+    
+
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Embedded Map</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        text-align: center;
+                    }
+
+                    .map-container {
+                        width: 100%;
+                        height: 600px;
+                        overflow: hidden;
+                        position: relative;
+                    }
+
+                    .map-container iframe {
+                        width: 100%;
+                        height: 100%;
+                        border: 0;
+                    }
+                </style>
+            </head>
+
+            <body>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h1>Find us at:</h1>
+                <div class="map-container">
+                    <iframe src=<iframe src=<iframe src=<iframe
+                        src=https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31084925.277621318!2d-8.586919200000027!3d-17.999821999999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19313f7e187ba8db%3A0x6d4628dec345dde6!2sTiru%20Farm!5e0!3m2!1sen!2szw!4v1737623469101!5m2!1sen!2szw
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+            </body>
+
+            </html>
+            <style>
+                .logozw.png {
+                    width: 1300px;
+                    height: auto;
+                }
+
+                /* Experience Section Styles */
+                .experience-section {
+                    padding: 100px 0;
+                    background: linear-gradient(to bottom, var(--bg-light), #f5f5f5);
+                }
+
+                .dark-mode .experience-section {
+                    background: linear-gradient(to bottom, var(--bg-dark), #2a2a2a);
+                }
+
+                .section-container {
+                    max-width: 1400px;
+                    margin: 0 auto;
+                    padding: 0 2rem;
+                }
+
+                .section-title {
+                    text-align: center;
+                    font-size: 2.5rem;
+                    margin-bottom: 3rem;
+                    color: var(--primary-light);
+                }
+
+                .experience-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 2rem;
+                    margin-bottom: 4rem;
+                }
+
+                .experience-card {
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 20px;
+                    overflow: hidden;
+                    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+                    transition: var(--transition);
+                }
+
+                .experience-card:hover {
+                    transform: translateY(-10px);
+                }
+
+                .card-image {
+                    position: relative;
+                    height: 200px;
+                    overflow: hidden;
+                }
+
+                .card-image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: var(--transition);
+                }
+
+                .card-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.3);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0;
+                    transition: var(--transition);
+                }
+
+                .card-overlay i {
+                    font-size: 3rem;
+                    color: #fff;
+                }
+
+                .experience-card:hover .card-overlay {
+                    opacity: 1;
+                }
+
+                .card-content {
+                    padding: 1.5rem;
+                    text-align: center;
+                }
+
+                .experience-btn {
+                    padding: 0.8rem 1.5rem;
+                    background: var(--primary-light);
+                    color: #fff;
+                    border: none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    transition: var(--transition);
+                    margin-top: 1rem;
+                }
+
+                .experience-btn:hover {
+                    background: var(--secondary-light);
+                }
+
+                /* Play Section Styles */
+                .play-section {
+                    padding: 100px 0;
+                    background: linear-gradient(45deg, var(--primary-light), var(--secondary-light));
+                }
+
+                .play-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 2rem;
+                }
+
+                .play-card {
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 20px;
+                    padding: 2rem;
+                    text-align: center;
+                    transition: var(--transition);
+                }
+
+                .play-card:hover {
+                    transform: translateY(-10px);
+                }
+
+                .play-content i {
+                    font-size: 3rem;
+                    color: #fff;
+                    margin-bottom: 1rem;
+                }
+
+                .play-btn {
+                    padding: 0.8rem 1.5rem;
+                    background: #fff;
+                    color: var(--primary-light);
+                    border: none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    transition: var(--transition);
+                    margin-top: 1rem;
+                }
+
+                .play-btn:hover {
+                    background: var(--primary-light);
+                    color: #fff;
+                }
+
+                /* Opportunities Section Styles */
+                .opportunities-section {
+                    padding: 100px 0;
+                    background: var(--bg-light);
+                }
+
+                .dark-mode .opportunities-section {
+                    background: var(--bg-dark);
+                }
+
+                .opportunities-slider {
+                    padding: 2rem 0;
+                }
+
+                .opportunity-card {
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 20px;
+                    overflow: hidden;
+                    margin: 1rem;
+                }
+
+                .investment-form {
+                    max-width: 600px;
+                    margin: 4rem auto 0;
+                    padding: 2rem;
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 20px;
+                }
+
+                .form-group {
+                    margin-bottom: 1.5rem;
+                }
+
+                .form-group input,
+                .form-group select,
+                .form-group textarea {
+                    width: 100%;
+                    padding: 1rem;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    border-radius: 10px;
+                    background: rgba(255, 255, 255, 0.1);
+                    color: var(--text-light);
+                }
+
+                .dark-mode .form-group input,
+                .dark-mode .form-group select,
+                .dark-mode .form-group textarea {
+                    color: var(--text-dark);
+                }
+
+                .submit-btn {
+                    width: 100%;
+                    padding: 1rem;
+                    background: var(--primary-light);
+                    color: #fff;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: var(--transition);
+                }
+
+                .submit-btn:hover {
+                    background: var(--secondary-light);
+                }
+
+                /* Responsive Design */
+                @media (max-width: 768px) {
+                    .section-title {
+                        font-size: 2rem;
+                    }
+
+                    .experience-grid,
+                    .play-grid {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .investment-form {
+                        margin: 2rem 1rem;
+                    }
+                }
+            </style>
+
+            <script>
+                // Initialize Swiper
+                const opportunitiesSlider = new Swiper('.opportunities-slider', {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 2,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                        },
+                    }
+                });
+
+                // Virtual Tour Function
+                function launchVirtualTour() {
+                    // Virtual Tour implementation
+                    alert('Launching Virtual Tour Experience...');
+                }
+
+                // Culture Explorer Function
+                function exploreCulture() {
+                    // Culture exploration implementation
+                    alert('Loading Cultural Experience...');
+                }
+
+                // Safari Function
+                function startSafari() {
+                    // Safari experience implementation
+                    alert('Starting Virtual Safari...');
+                }
+
+                // Investment Form Submission
+                function submitInvestmentForm(event) {
+                    event.preventDefault();
+                    // Form submission implementation
+                    alert('Thank you for your interest! We will contact you soon.');
+                }
+
+                // Show Investment Details
+                function showDetails(sector) {
+                    // Implementation for showing sector details
+                    alert(`Loading details for ${sector} sector...`);
+                }
+            </script>
+            <!--Newest-->
+            <style>
+                :root {
+                    --primary-light: #2C5F2D;
+                    --secondary-light: #97BC62;
+                    --accent-light: #D4AC2B;
+                    --text-light: #333333;
+                    --bg-light: #ffffff;
+
+                    --primary-dark: #1A1A1A;
+                    --secondary-dark: #2D2D2D;
+                    --accent-dark: #FFB800;
+                    --text-dark: #ffffff;
+                    --bg-dark: #121212;
+                }
+
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    transition: all 0.3s ease;
+                }
+
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    background: var(--bg-light);
+                    color: var(--text-light);
+                }
+
+                body.dark-mode {
+                    background: var(--bg-dark);
+                    color: var(--text-dark);
+                }
+
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                }
+
+                /* Header Styles */
+                header {
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    position: fixed;
+                    width: 100%;
+                    z-index: 1000;
+                    padding: 20px 0;
+                }
+
+                .nav-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .logo {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: var(--primary-light);
+                }
+
+                .dark-mode .logo {
+                    color: var(--accent-dark);
+                }
+
+                .nav-links {
+                    display: flex;
+                    gap: 30px;
+                }
+
+                .nav-links a {
+                    text-decoration: none;
+                    color: var(--text-light);
+                    position: relative;
+                }
+
+                .dark-mode .nav-links a {
+                    color: var(--text-dark);
+                }
+
+                .nav-links a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background: var(--accent-light);
+                    transition: width 0.3s ease;
+                }
+
+                .nav-links a:hover::after {
+                    width: 100%;
+                }
+
+                /* Store Section */
+                .store-section {
+                    padding: 100px 0;
+                }
+
+                .product-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 30px;
+                    padding: 20px;
+                }
+
+                .product-card {
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 15px;
+                    padding: 20px;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease;
+                }
+
+                .product-card:hover {
+                    transform: translateY(-10px);
+                }
+
+                .product-image {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                }
+
+                .product-info {
+                    margin-top: 15px;
+                }
+
+                .product-title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+
+                .product-price {
+                    color: var(--accent-light);
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                /* Our Future Section */
+                .future-section {
+                    padding: 100px 0;
+                    background: linear-gradient(45deg, rgba(44, 95, 45, 0.1), rgba(151, 188, 98, 0.1));
+                }
+
+                .timeline {
+                    position: relative;
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+
+                .timeline-item {
+                    padding: 20px;
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    border-radius: 15px;
+                    margin-bottom: 30px;
+                    position: relative;
+                }
+
+                .timeline-item::before {
+                    content: '';
+                    position: absolute;
+                    width: 2px;
+                    height: 100%;
+                    background: var(--accent-light);
+                    left: -20px;
+                    top: 0;
+                }
+
+                /* Contact Section */
+                .contact-section {
+                    padding: 100px 0;
+                }
+
+                .contact-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 50px;
+                }
+
+                .contact-form {
+                    background: rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(10px);
+                    padding: 30px;
+                    border-radius: 15px;
+                }
+
+                .form-group {
+                    margin-bottom: 20px;
+                }
+
+                .form-group label {
+                    display: block;
+                    margin-bottom: 5px;
+                }
+
+                .form-group input,
+                .form-group textarea {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 5px;
+                    background: rgba(255, 255, 255, 0.05);
+                    color: var(--text-light);
+                }
+
+                .dark-mode .form-group input,
+                .dark-mode .form-group textarea {
+                    background: rgba(0, 0, 0, 0.2);
+                    color: var(--text-dark);
+                }
+
+                .submit-btn {
+                    background: var(--accent-light);
+                    color: white;
+                    padding: 12px 30px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: transform 0.3s ease;
+                }
+
+                .submit-btn:hover {
+                    transform: scale(1.05);
+                }
+
+                /* Animations */
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .fade-in {
+                    animation: fadeIn 1s ease forwards;
+                }
+
+                /* Responsive Design */
+                @media (max-width: 768px) {
+                    .contact-grid {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .nav-links {
+                        display: none;
+                    }
+
+                    .product-grid {
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    }
+                }
+            </style>
+
+            <body>
+                <header>
+                    <div class="nav-container container">
+                        <div class="logo">Zimbabwe Pavilion</div>
+                        <nav class="nav-links">
+                            <a href="#store">Store</a>
+                            <a href="#future">Our Future</a>
+                            <a href="#contact">Contact</a>
+                        </nav>
+                    </div>
+                </header>
+
+                <!-- Contact Section -->
+                <section id="contact" class="contact-section">
+                    <div class="form-container">
+                        <h2>Contact Us</h2>
+                        <form id="contact-form">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required placeholder="Your Name">
+
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required placeholder="Your Email">
+
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" required placeholder="Your Message"></textarea>
+
+                            <button type="submit" class="submit-button">Send Message</button>
+                        </form>
+                    </div>
+                </section>
+
+                <style>
+                    .contact-section {
+                        background-color: #f9f9f9;
+                        padding: 40px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .form-container {
+                        background: white;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                        padding: 30px;
+                        width: 100%;
+                        max-width: 500px;
+                    }
+
+                    h2 {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+
+                    label {
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                        display: block;
+                    }
+
+                    input[type="text"],
+                    input[type="email"],
+                    textarea {
+                        width: 100%;
+                        padding: 10px;
+                        margin: 10px 0;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        transition: border-color 0.3s;
+                    }
+
+                    input[type="text"]:focus,
+                    input[type="email"]:focus,
+                    textarea:focus {
+                        border-color: #007BFF;
+                        /* Change to your preferred color */
+                        outline: none;
+                    }
+
+                    .submit-button {
+                        background-color: #007BFF;
+                        /* Primary color */
+                        color: white;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        width: 100%;
+                        font-size: 16px;
+                        transition: background-color 0.3s;
+                    }
+
+                    .submit-button:hover {
+                        background-color: #0056b3;
+                        /* Darker shade */
+                    }
+                </style>
+                <h3>Get in Touch</h3>
+                <p>Address: Lot 4 Pollockshields Estate Selous
+                    <br>
+                    Mashonaland west
+                </p>
+                <p>Email: sales@tirufresh.co.zw</p>
+                <p>Phone: +263 788 088 714</p>
+                <!-- Add more contact details -->
+        </div>
+        </div>
+        </div>
+    </section>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Form Submission
+        document.querySelector('.contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Add form submission logic here
+            alert('Thank you for your message! We will get back to you soon.');
+        });
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Product Quick View
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Add quick view logic here
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add to Cart Functionality
+        let cart = [];
+        function addToCart(product) {
+            cart.push(product);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Update cart display
+        }
+
+        // Interactive Timeline
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+
+        // Form Validation
+        function validateForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Responsive Navigation
+        function toggleNav() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Background Animation
+        function createBackground() {
+            const pattern = document.createElement('div');
+            pattern.classList.add('background-pattern');
+            document.body.appendChild(pattern);
+        }
+
+        // Initialize all functions
+        document.addEventListener('DOMContentLoaded', () => {
+            createBackground();
+            // Add more initialization as needed
+        });
+    </script>
+
+
+    </body>
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WhatsApp Popup Button</title>
+        <style>
+            #whatsapp-button {
+                display: none;
+                /* Start hidden */
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #25D366;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 50px;
+                text-decoration: none;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+
+            #whatsapp-button:hover {
+                background-color: #128C7E;
+                /* Darker green on hover */
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <a href="https://wa.me/263788088714" target="_blank" id="whatsapp-button">
+            💬 Chat with us on WhatsApp
+        </a>
+
+        <script>
+            window.onload = function () {
+                document.getElementById('whatsapp-button').style.display = 'block';
+            };
+        </script>
+
+    </body>
+
+    </html>
+
+    </html>

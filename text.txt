@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive African Map Integration</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <style>
+        :root {
+            --light-primary: #E5B73B;
+            --light-secondary: #8B4513;
+            --light-accent: #228B22;
+            --light-text: #333333;
+            
+            --dark-primary: #2C3E50;
+            --dark-secondary: #E67E22;
+            --dark-accent: #27AE60;
+            --dark-text: #ECF0F1;
+            
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light-primary), var(--light-secondary));
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, var(--dark-primary), var(--dark-secondary));
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .map-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .map-title {
+            color: var(--light-text);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .dark-mode .map-title {
+            color: var(--dark-text);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--light-text);
+            backdrop-filter: blur(5px);
+        }
+
+        .dark-mode .search-box {
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--dark-text);
+        }
+
+        .control-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: var(--light-accent);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #map {
+            width: 100%;
+            height: 600px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .marker {
+            width: 30px;
+            height: 30px;
+            background: var(--light-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(229, 183, 59, 0.7);
+            }
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(229, 183, 59, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(229, 183, 59, 0);
+            }
+        }
+
+        .popup {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px;
+            max-width: 300px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .map-container {
+                margin: 20px;
+            }
+
+            #map {
+                height: 400px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="map-container">
+        <div class="map-card">
+            <div class="map-header">
+                <h1 class="map-title">Interactive Map</h1>
+            </div>
+            <div class="controls">
+                <input type="text" class="search-box" placeholder="Search location...">
+                <button class="control-btn" id="currentLocation">
+                    <i class="fas fa-location-arrow"></i> Current Location
+                </button>
+            </div>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize map
+        mapboxgl.accessToken = 'YOUR_MAPBOX_TOKEN';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [31.0535, -17.8277], // Zimbabwe coordinates
+            zoom: 6
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+            
+            // Update map style based on theme
+            map.setStyle(body.classList.contains('dark-mode') 
+                ? 'mapbox://styles/mapbox/dark-v10' 
+                : 'mapbox://styles/mapbox/streets-v11'
+            );
+        });
+
+        // Current location button
+        document.getElementById('currentLocation').addEventListener('click', () => {
+            navigator.geolocation.getCurrentPosition(position => {
+                const { longitude, latitude } = position.coords;
+                map.flyTo({
+                    center: [longitude, latitude],
+                    zoom: 14,
+                    essential: true
+                });
+                
+                // Add marker for current location
+                new mapboxgl.Marker({
+                    color: getComputedStyle(document.documentElement)
+                        .getPropertyValue('--light-primary')
+                })
+                    .setLngLat([longitude, latitude])
+                    .addTo(map);
+            });
+        });
+
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        searchBox.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchBox.value;
+                fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${mapboxgl.accessToken}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.features.length > 0) {
+                            const [lng, lat] = data.features[0].center;
+                            map.flyTo({
+                                center: [lng, lat],
+                                zoom: 14,
+                                essential: true
+                            });
+                        }
+                    });
+            }
+        });
+
+        // Add map controls
+        map.addControl(new mapboxgl.NavigationControl());
+        map.addControl(new mapboxgl.FullscreenControl());
+
+        // Add custom markers for important locations
+        const markers = [
+            { coordinates: [31.0535, -17.8277], title: 'Harare' },
+            { coordinates: [28.5833, -20.1500], title: 'Bulawayo' },
+            { coordinates: [25.8333, -17.9333], title: 'Victoria Falls' }
+        ];
+
+        markers.forEach(marker => {
+            const el = document.createElement('div');
+            el.className = 'marker';
+
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.coordinates)
+                .setPopup(new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(`<h3>${marker.title}</h3>`))
+                .addTo(map);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goats for Sale</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .cattle-item {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .cattle-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .cattle-image {
+            width: 150px;
+            height: 100px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .cattle-details {
+            flex-grow: 1;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        h3 {
+            margin-top: 30px;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Goats for Sale</h1>
+    <div class="cattle-item">
+        <img src="goat1.jpg" alt="Nubian Goat" class="cattle-image">
+        <div class="cattle-details">
+            <h2>Nubian Goat</h2>
+            <p>Price: $1,000</p>
+            <button onclick="addToCart('Nubian Goat', 1000)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="cattle-item">
+        <img src="goat2.jpg" alt="Boer Goat" class="cattle-image">
+        <div class="cattle-details">
+            <h2>Boer Goat</h2>
+            <p>Price: $1,200</p>
+            <button onclick="addToCart('Boer Goat', 1200)">Add to Cart</button>
+        </div>
+    </div>
+    <div>
+        <h3>Your Cart</h3>
+        <ul id="cart"></ul>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartList = document.getElementById('cart');
+        cartList.innerHTML = '';
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name}: $${item.price}`;
+            cartList.appendChild(li);
+        });
+    }
+
+    function checkout() {
+        const message = cart.map(item => `${item.name}: $${item.price}`).join('%0A');
+        const whatsappNumber = 'YOUR_WHATSAPP_NUMBER'; // Replace with your WhatsApp number
+        const whatsappLink = `https://wa.me/263788088714?text=I%20would%20like%20to%20buy%3A%0A${message}`;
+        window.open(whatsappLink, '_blank');
+    }
+</script>
+
+</body>
+</html>
